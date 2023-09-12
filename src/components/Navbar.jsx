@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <header
       className="bg-transparent px-[95px] py-[22px] flex items-center justify-between w-full h-[80px] fixed top-0 left-0"
-      style={{ zIndex: 100 }} // Add the z-index here
+      style={{ zIndex: 100 }}
     >
       <div className="flex gap-6 items-center">
         <img src={logo} alt="Moviebox-logo" className="w-[50px] h-[50px]" />

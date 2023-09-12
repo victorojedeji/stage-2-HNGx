@@ -36,7 +36,7 @@ module.exports = {
         lineHeight: '2.25rem',
       }],
       '4xl': ['2.25rem', {
-        lineHeight: '2.5rem',
+        lineHeight: '2.9rem',
       }],
       '5xl': ['3rem', {
         lineHeight: '3.5rem',

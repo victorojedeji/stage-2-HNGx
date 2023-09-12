@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo/tv.png";
 import { AiOutlineSearch } from "react-icons/ai";
 
 export default function Navbar() {
+  const [navBg, setNavBg] = useState();
+  const changeNavbg = () => {
+    if (window.scrollY >= 450) {
+        setNavBg(true);
+    } else {
+        setNavBg(false);
+    }
+};
+window.addEventListener('scroll', changeNavbg);
   return (
     <header
-      className="bg-transparent px-[95px] py-[22px] flex items-center justify-between w-full h-[80px] fixed top-0 left-0"
+      className={
+        navBg 
+        ? 'bg-gray-600 transition-all duration-100 ease-in px-[95px] py-[22px] flex items-center justify-between w-full h-[80px] fixed top-0 left-0'
+        : 'bg-transparent px-[95px] py-[22px] flex items-center justify-between w-full h-[80px] fixed top-0 left-0'
+      }
       style={{ zIndex: 100 }}
+      // bg-gradient-to-b from-[#00000000] to-[#00000083]
     >
       <div className="flex gap-6 items-center">
         <img src={logo} alt="Moviebox-logo" className="w-[50px] h-[50px]" />

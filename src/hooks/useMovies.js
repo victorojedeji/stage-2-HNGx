@@ -23,7 +23,7 @@ function useMovies() {
     
         if (response.status === 200) {
           const data = await response.json();
-          setMovies(data['results']);
+          setMovies(data['results'].slice(0, 10));
           setIsLoading(false);
         } else {
           setError(new Error('Error fetching data from TMDB'));

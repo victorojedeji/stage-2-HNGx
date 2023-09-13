@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-function useMovie(movieId) {
-  const [movie, setMovie] = useState([]);
+function useMovie(id) {
+  const [movie, setMovie] = useState({});
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,11 +19,11 @@ function useMovie(movieId) {
           }
         };
     
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}`, options);
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${id}`, options);
     
         if (response.status === 200) {
           const data = await response.json();
-          setMovie(data['results']);
+          setMovie(data);
           setIsLoading(false);
         } else {
           setError(new Error('Error fetching data from TMDB'));
@@ -37,7 +37,6 @@ function useMovie(movieId) {
 
     fetchMovies();
   }, []);
-
   return { movie, isLoading, error };
 }
 

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function MovieCard({ movieData }) {
-  console.log(movieData)
   return (
     <Link to={`/movies/${movieData.id}`}>
   <div className="h-[370px] w-[250px] relative">

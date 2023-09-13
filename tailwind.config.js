@@ -71,7 +71,7 @@ module.exports = {
         'red-700': '#B91C1C',
         'red-600': '#DC2626',
         'red-500': '#EF4444',
-        'red-400': '#F87171',
+        'red-400': '#F87171', 
         'red-300': '#FCA5A5',
         'red-200': '#FECACA',
         'red-100': '#FEE2E2',

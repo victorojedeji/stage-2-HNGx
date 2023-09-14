@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import logo from "../assets/logo/tv.png";
 import { AiOutlineSearch } from "react-icons/ai";
+import { FaTimes } from "react-icons/fa";
 import useSearchFilter from "../hooks/useSearchFilter";
 import SearchMovieCard from "./SearchMovieCard";
 import { Link } from "react-router-dom";
+import { Ring } from "@uiball/loaders";
 
 export default function Navbar() {
   const {
@@ -17,7 +19,6 @@ export default function Navbar() {
   const [activeSearchField, setActiveSearchField] = useState(false);
   const [inputField, setInputField] = useState("");
   const [navBg, setNavBg] = useState();
-  const searchRef = useRef(null);
 
   const changeNavbg = () => {
     if (window.scrollY >= 450) {
@@ -60,10 +61,21 @@ export default function Navbar() {
             placeholder="Search..."
             className="w-full py-1.5 px-4 rounded-md border-2 bg-transparent border-gray-300 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-50 placeholder:text-white text-white"
             onChange={handleInputField}
-            ref={searchRef}
           />
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <AiOutlineSearch className="h-5 w-5 text-white" />
+            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+              {moviesLoading ? (
+                <Ring color="#ffffff" />
+              ) : moviesError ? (
+                "Error loading movie data"
+              ) : isLoading ? (
+                <Ring />
+              ) : error ? (
+                <FaTimes className="text-red-500" />
+              ) : (
+                <AiOutlineSearch className="h-5 w-5 text-white" />
+              )}
+            </div>
           </div>
         </div>
       </header>
@@ -81,7 +93,13 @@ export default function Navbar() {
             ))
           ) : (
             <div className="p-2 italic text-center w-full">
-              No movie with that title here!
+              {moviesLoading ? (
+                <Ring />
+              ) : moviesError ? (
+                "Error loading movie data"
+              ) : (
+                "No movie with that title here!"
+              )}
             </div>
           )}
         </div>

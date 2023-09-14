@@ -2,11 +2,11 @@ import React from "react";
 import MovieCard from "./MovieCard";
 import useMovies from "../../hooks/useMovies";
 import { Link } from "react-router-dom";
-
+import { Ring } from "@uiball/loaders";
 
 function ErrorDisplay({ message }) {
   return (
-    <div className="w-full h-[100%] flex items-center justify-center">
+    <div>
       <div className="text-red-600">{message}</div>
     </div>
   );
@@ -14,11 +14,36 @@ function ErrorDisplay({ message }) {
 
 export default function Home() {
   const { movies, isLoading: moviesLoading, error } = useMovies();
-  if (moviesLoading) return 'loading...';
 
   if (error)
     return (
-      <ErrorDisplay message="Failed to fetch movies. Please try again later." />
+      <div 
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ErrorDisplay message="Failed to fetch movies. Please try again later." />
+
+      </div>
+    );
+
+    if (moviesLoading)
+    return (
+      <div 
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Ring speed={1.75} />
+      </div>
     );
 
   const featuredImg =

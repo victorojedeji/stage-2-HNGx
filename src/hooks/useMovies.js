@@ -7,7 +7,6 @@ function useMovies() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const API_KEY = process.env.REACT_APP_API_KEY;
     const fetchMovies = async () => {
       try { 
         const API_KEY = process.env.REACT_APP_API_KEY;

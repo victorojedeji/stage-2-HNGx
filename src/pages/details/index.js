@@ -1,12 +1,52 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useMovie from "../../hooks/useMovie";
+import { Ring } from "@uiball/loaders";
+
+function ErrorDisplay({ message }) {
+  return (
+    <div>
+      <div className="text-red-600">{message}</div>
+    </div>
+  );
+}
+
 
 export default function DetailsPage() {
   const { id } = useParams();
-  const { movie, isLoading, error } = useMovie(id);
+  const { movie, isLoading: movieLoading, error } = useMovie(id);
   if (!movie) return null;
 
+  if (error)
+  return (
+    <div 
+      style={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <ErrorDisplay message="Failed to fetch movies. Please try again later." />
+
+    </div>
+  );
+
+  if (movieLoading)
+  return (
+    <div 
+      style={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Ring speed={1.75} />
+    </div>
+  );
   
   const featuredImg = movie?.backdrop_path
     ? `https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`

@@ -11,48 +11,45 @@ function ErrorDisplay({ message }) {
   );
 }
 
-
 export default function DetailsPage() {
   const { id } = useParams();
   const { movie, isLoading: movieLoading, error } = useMovie(id);
   if (!movie) return null;
 
   if (error)
-  return (
-    <div 
-      style={{
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <ErrorDisplay message="Failed to fetch movies. Please try again later." />
-
-    </div>
-  );
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ErrorDisplay message="Failed to fetch movies. Please try again later." />
+      </div>
+    );
 
   if (movieLoading)
-  return (
-    <div 
-      style={{
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Ring speed={1.75} />
-    </div>
-  );
-  
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Ring speed={1.75} />
+      </div>
+    );
+
   const featuredImg = movie?.backdrop_path
     ? `https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`
     : "../../assets/headerBg.png";
 
-    
   return (
     <div>
       <section
@@ -62,13 +59,15 @@ export default function DetailsPage() {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
+        data-testid="movie-overview"
       >
-        <div 
-          className="absolute top-0 left-0 w-full h-full bg-black opacity-50"
-        ></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
 
         <div className="py-40 w-full md:w-[60%] lg:w-[40%] xl:w-[404px] z-50 relative">
-          <h1 className="text-5xl text-white font-bold font-DMsans mb-4">
+          <h1
+            className="text-5xl text-white font-bold font-DMsans mb-4"
+            data-testid="movie-title"
+          >
             {movie?.title}
           </h1>
 
@@ -79,11 +78,18 @@ export default function DetailsPage() {
           <div className="w-full flex items-center gap-10">
             <div>
               <h1 className="text-gray-200">Runtime</h1>
-              <p className="text-white">{movie.runtime} minutes</p>
+              <div className="flex items-center gap-1">
+                <p className="text-white" data-testid="movie-runtime">
+                  {movie.runtime}
+                </p>
+                <span className="text-white">minutes</span>
+              </div>
             </div>
 
             <div>
-              <h1 className="text-gray-200">Release Date</h1>
+              <h1 className="text-gray-200" data-testid="movie-release-date">
+                Release Date
+              </h1>
               <p className="text-white">{movie.release_date}</p>
             </div>
           </div>

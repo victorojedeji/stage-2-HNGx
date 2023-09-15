@@ -65,7 +65,7 @@ export default function Navbar() {
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
               {isLoading ? (
-                <Ring color="#ffffff" size={30} />
+                <Ring color="#ffffff" size={20} />
               ) : moviesError ? (
                 "Error loading movie data"
               ) : moviesLoading? (
